@@ -18,12 +18,10 @@ class Controller
     end
   end
   def command_loop
-    commands = ["make groups", "get groups", "get cohort information"]
+    commands = ["make groups", "get cohort information"]
     command = View.get_command
     if command == "make groups"
       View.give_to_user @cohort.make_groups
-    elsif command == "get groups"
-      View.give_to_user @cohort.this_weeks_groups
     elsif command == "get cohort information"
       View.give_to_user @cohort.cohort_information
     elsif command == "exit"
