@@ -1,4 +1,8 @@
 require_relative 'config/application'
+require_relative 'lib/import'
 
-puts APP_NAME
+unless ARGV.empty?
+  import_text_file(ARGV[0])
+end
 
+Controller.new
