@@ -1,4 +1,4 @@
 class Student < ActiveRecord::Base
   belongs_to :cohort
-  belongs_to :group
+  has_and_belongs_to_many :groups
 end
