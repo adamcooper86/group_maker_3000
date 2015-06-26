@@ -11,9 +11,11 @@ class Controller
     else
       if View.create_new_cohort? == "y"
         @cohort = Cohort.create(:name => @cohort)
+        name_array = View.input_name
+        name_array.each {|name| Student.create(:name => name, :cohort_id => @cohort.id)}
       else
         @cohort = View.get_cohort
-        evalutate_cohort
+        evalutate_co
       end
     end
   end
@@ -29,7 +31,7 @@ class Controller
     elsif command == "exit"
       return
     else
-      View.did_not_understand command
+      View.did_not_understand(command)
     end
     command_loop
   end
