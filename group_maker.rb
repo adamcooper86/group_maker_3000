@@ -7,19 +7,24 @@ end
 
 # Controller.new
 
-cohort = Cohort.create(:name => 'Bumbles')
-group = Group.create(:name => 'Bees')
+cohort = Cohort.find_or_create_by(:name => 'Grasshoppers')
+30.times do
+  cohort.students << Student.create(:name => "stupidface")
+end
+cohort.create_new_groups
 
-cohort.groups << group
 
-ap = Student.create(:name => 'Andrew Pats')
-
-group.students << ap
-
+puts "##############################"
+puts "cohort"
 p cohort
+puts "##############################"
+puts "cohort students"
+p cohort.students
+puts "#############c#################"
+puts "cohort groups"
 p cohort.groups
-p group.students
-
-
-
-
+puts "##############################"
+puts "group students"
+cohort.groups.last(6).each do |group|
+  p group.students
+end

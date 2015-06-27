@@ -27,5 +27,9 @@ Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each do |controller_file|
   require controller_file
 end
 
+Dir[APP_ROOT.join('app', 'view', '*.rb')].each do |view_file|
+  require view_file
+end
+
 ActiveRecord::Base.establish_connection :adapter  => 'sqlite3',
                                         :database => DB_PATH

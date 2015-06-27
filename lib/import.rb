@@ -11,8 +11,6 @@ def import_text_file file_name
         cohort.students.create(:name => line.chomp)
       end
       count += 1
-      p cohort
-      p cohort.students
     end
   end
 end
