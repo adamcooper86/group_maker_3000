@@ -8,3 +8,5 @@ You have two options:
 
 2. You can run group_maker.rb without any arguements and follow the console prompts.
 
+#Caution - this initial version does not roll back groups once they are made, so
+save the groups in a seperate system (email?) before making new groups.
