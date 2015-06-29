@@ -10,6 +10,19 @@ class String
   end
 end
 
+desc "reset the database"
+task "db:reset" do
+  puts "Deleting #{DB_PATH}..."
+  rm_f DB_PATH
+  puts "Creating file #{DB_PATH} if it doesn't exist..."
+  touch DB_PATH
+  ActiveRecord::Migrator.migrations_paths << File.dirname(__FILE__) + 'db/migrate'
+  ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
+  ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths, ENV["VERSION"] ? ENV["VERSION"].to_i : nil) do |migration|
+    ENV["SCOPE"].blank? || (ENV["SCOPE"] == migration.scope)
+  end
+end
+
 desc "create the database"
 task "db:create" do
   puts "Creating file #{DB_PATH} if it doesn't exist..."

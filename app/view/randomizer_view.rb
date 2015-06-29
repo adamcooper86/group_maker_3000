@@ -8,12 +8,12 @@ class View
 
   def self.get_cohort
     puts "Please enter the name of the cohort:  "
-    gets.chomp
+    STDIN.gets.chomp
   end
 
   def self.create_new_cohort?
     puts "Would you like to create a new cohort? y or n "
-    gets.chomp
+    STDIN.gets.chomp
   end
 
   def self.input_name
@@ -21,7 +21,7 @@ class View
     puts "Please enter student's name one at a time:"
     puts "(enter 'exit' when finished)"
     loop do
-     input = gets.chomp
+     input = STDIN.gets.chomp
       if input == 'exit'
         break
       else
@@ -33,11 +33,30 @@ class View
 
   def self.get_command
     puts "Would you like to 'make groups', 'get groups', 'get cohort information', or 'exit'?"
-    gets.chomp
+    STDIN.gets.chomp
   end
 
-  def self.give_to_user(args)
-    puts args
+  def self.display_groups(groups)
+    groups.each do |group|
+      puts "#" * 30
+      puts group.name
+      puts "-" * 30
+      group.students.each do |student|
+        puts student.name
+      end
+    end
+  end
+
+  def self.display_cohort_information cohort
+    puts "#" * 30
+    puts cohort.name
+    puts "-" * 30
+    puts "There are #{cohort.students.length} students in the cohort."
+    puts "-" * 30
+    puts "Students:"
+    cohort.students.each do |student|
+      puts student.name
+    end
   end
 
   def self.did_not_understand(command)
